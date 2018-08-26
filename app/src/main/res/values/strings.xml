@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TotallyGrocery</string>
     <string name="enter_name_here">Enter name here</string>
+    <string name="delete">Delete</string>
 </resources>
