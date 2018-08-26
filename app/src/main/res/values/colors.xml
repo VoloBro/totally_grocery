@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#EA3732</color>
     <color name="bgRowBackground">#FA315B</color>
+    <color name="bgAddBackground">#049e14</color>
     <color name="itemName">#535353</color>
     <color name="description">#a9a9a9</color>
 </resources>

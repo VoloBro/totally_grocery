@@ -37,13 +37,26 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback{
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         View foregroundView = ((CardListAdapter.MyViewHolder) viewHolder).viewForeground;
+        processBackground((CardListAdapter.MyViewHolder) viewHolder, dX);
         getDefaultUIUtil().onDraw(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
     }
 
     @Override
     public void onChildDrawOver(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         View foregroundView = ((CardListAdapter.MyViewHolder) viewHolder).viewForeground;
+        processBackground((CardListAdapter.MyViewHolder) viewHolder, dX);
         getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY, actionState, isCurrentlyActive);
+    }
+
+    private void processBackground(CardListAdapter.MyViewHolder viewHolder, float dX) {
+        if (dX > 0){
+            viewHolder.viewBackgroundAdd.setVisibility(View.VISIBLE);
+            viewHolder.viewBackgroundDelete.setVisibility(View.INVISIBLE);
+        }
+        else{
+            viewHolder.viewBackgroundDelete.setVisibility(View.VISIBLE);
+            viewHolder.viewBackgroundAdd.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

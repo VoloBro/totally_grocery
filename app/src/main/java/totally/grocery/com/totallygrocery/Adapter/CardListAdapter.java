@@ -31,7 +31,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.MyView
 
         public TextView name, description, price;
         public ImageView thumbnail;
-        public RelativeLayout viewBackground, viewForeground;
+        public RelativeLayout viewBackgroundDelete, viewBackgroundAdd, viewForeground;
 
 
         public MyViewHolder(View itemView) {
@@ -43,7 +43,8 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.MyView
 
             thumbnail = itemView.findViewById(R.id.thumbnail);
 
-            viewBackground = itemView.findViewById(R.id.view_background);
+            viewBackgroundDelete = itemView.findViewById(R.id.view_background_delete);
+            viewBackgroundAdd = itemView.findViewById(R.id.view_background_add);
             viewForeground = itemView.findViewById(R.id.view_foreground);
 
         }
@@ -55,7 +56,6 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.MyView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_list_item, parent, false);
-
         return new MyViewHolder(itemView);
     }
 

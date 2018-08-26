@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
 //        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
 
-        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView);
 
         //Request API
@@ -90,9 +90,20 @@ public class MainActivity extends AppCompatActivity implements RecyclerItemTouch
             String name = list.get(viewHolder.getAdapterPosition()).getName();
             final Item deletedItem = list.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
-            adapter.removeItem(deletedIndex);
 
-            Snackbar snackbar = Snackbar.make(rootLayout, name + "Removed from cart!", Snackbar.LENGTH_LONG);
+            String snackbarText = "Unknown direction";
+            boolean toRemove = ItemTouchHelper.LEFT == direction;
+
+            if (toRemove){
+                adapter.removeItem(deletedIndex);
+                snackbarText = name + " Removed from cart!";
+            }
+            else{
+                adapter.removeItem(deletedIndex);
+                snackbarText = name + " Added to cart!";
+            }
+
+            Snackbar snackbar = Snackbar.make(rootLayout, snackbarText, Snackbar.LENGTH_LONG);
             snackbar.setAction("UNDO", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
